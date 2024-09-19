@@ -29,6 +29,7 @@ public class HotelReservationSystem {
                 System.out.println("3. Get Room Number");
                 System.out.println("4. Update Reservations");
                 System.out.println("5. Delete Reservations");
+                System.out.println("6. Make a Payment");
                 System.out.println("0. Exit");
                 System.out.println("Choose an option: ");
                 int choice=scanner.nextInt();
@@ -48,6 +49,9 @@ public class HotelReservationSystem {
                     case 5:
                         delete(con, scanner);
                         break;
+                    case 6:
+                        processPayment(con, scanner); // Handle payment
+                        break;   
                     case 0:
                         exit();
                         scanner.close();
