@@ -75,6 +75,12 @@ public class HotelReservationSystem {
             System.out.println("Enter contact number: ");
             String phone_number=scanner.next();
 
+            boolean paymentSuccessful = processPayment(con, scanner);
+            if (!paymentSuccessful) {
+                System.out.println("Payment failed! Reservation not completed.");
+                return;
+            }
+            
             String query = "INSERT INTO reservation (name, roomNo, phoneNo) " +
                     "VALUES ('" + guest_name + "', " + room_number + ", '" + phone_number + "')";
             
@@ -92,6 +98,52 @@ public class HotelReservationSystem {
             e.printStackTrace();
         }
     }
+     private static boolean processPayment(Connection con, Scanner scanner) {
+        try {
+            System.out.println("Enter account number for payment: ");
+            long acc_no = scanner.nextLong();
+            System.out.println("Enter PIN: ");
+            String pin = scanner.next();
+            System.out.println("Enter payment amount: ");
+            BigDecimal amount = scanner.nextBigDecimal();
+
+            // Verify account and PIN
+            if (!verifyAccount(con, acc_no, pin)) {
+                System.out.println("Invalid account number or PIN.");
+                return false;
+            }
+
+            // Deduct the amount from the account
+            String query = "UPDATE accounts SET balance = balance - ? WHERE acc_no = ? AND pin = ?";
+            try (PreparedStatement pst = con.prepareStatement(query)) {
+                pst.setBigDecimal(1, amount);
+                pst.setLong(2, acc_no);
+                pst.setString(3, pin);
+
+                int rowsAffected = pst.executeUpdate();
+                return rowsAffected > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    private static boolean verifyAccount(Connection con, long acc_no, String pin) {
+        String query = "SELECT * FROM accounts WHERE acc_no = ? AND pin = ?";
+        try (PreparedStatement pst = con.prepareStatement(query)) {
+            pst.setLong(1, acc_no);
+            pst.setString(2, pin);
+
+            try (ResultSet rs = pst.executeQuery()) {
+                return rs.next();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
     private static void viewReservation(Connection con) throws SQLException{
         String query="select * from reservation;";
