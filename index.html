@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Management System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .feature {
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        .feature h3 {
+            color: #3498db;
+            margin-top: 0;
+        }
+        .cta {
+            text-align: center;
+            margin-top: 3rem;
+        }
+        .button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .button:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1> Welcome to the Hotel Management System</h1>
+        
+        <p style="text-align: center; font-size: 1.2rem;"></p>
+            <p>Our Hotel Management System simplifies the booking and management of hotel reservations. <br> With easy access to all essential functionalities, it ensures seamless customer service and efficient management.</p>
+
+
+        <div class="features">
+            <div class="feature">
+                <h3>Key Features</h3>
+                <ul>
+                    <li>Reserve a Room</li>
+                    <li>View Current Reservations</li>
+                    <li>Room Number Retrieval</li>
+                    <li>Update Reservation Details</li>
+                    <li>Delete Reservations</li>
+                    <li>Make Payments</li>
+                </ul>
+            </div>
+            <div class="feature">
+                <h3>Technical Details</h3>
+                <ul>
+                    <li>Built using Java, JDBC and MySQL</li>
+                    <li>Java Database Connectivity</li>
+                    <li>Database Management</li>
+                </ul>
+            </div>
+        </div>
+        <div class="cta">
+            <p>View the project on GitHub:</p>
+            <a href="https://github.com/Anugupta5102/Hotel-Management-System" class="button">GitHub Repository</a>
+        </div>
+    </div>
+
+    </div>
+</body>
+</html>
